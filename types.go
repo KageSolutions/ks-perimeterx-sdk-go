@@ -7,6 +7,7 @@ type PxRequest struct {
 	Proxy   string `json:"proxy"`
 	Cookie  string `json:"cookie"`
 	PXHD    string `json:"_pxhd"`
+	Site    PxSite `json:"site"`
 	Data    string `json:"data,omitempty"`
 }
 
