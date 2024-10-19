@@ -1,19 +1,19 @@
 package ksperimeterxsdkgo
 
 import (
-	"bytes"
 	"encoding/json"
 	"errors"
 	"io"
 	"net/http"
 )
 
-func (r *PxRequest) RequestPx() (*PxResponse, error) {
-	requestData, err := structToReader(r)
+// request px init cookie
+func (r *PxSdkInstance) RequestPxInit() (*PxResponse, error) {
+	requestData, err := structToReader(r.request)
 	if err != nil {
 		return nil, err
 	}
-	req, err := http.NewRequest("POST", ApiUrl, requestData)
+	req, err := http.NewRequest("POST", ApiInitUrl, requestData)
 	if err != nil {
 		return nil, err
 	}
@@ -38,13 +38,6 @@ func (r *PxRequest) RequestPx() (*PxResponse, error) {
 	if !responseData.Success {
 		return nil, errors.New("could not successfully generate px")
 	}
+	r.request.Data = responseData.Headers.Data
 	return &responseData, err
-}
-
-func structToReader(data interface{}) (io.Reader, error) {
-	jsonData, err := json.Marshal(data)
-	if err != nil {
-		return nil, err
-	}
-	return bytes.NewReader(jsonData), nil
 }

@@ -1,7 +1,8 @@
 package ksperimeterxsdkgo
 
 var (
-	ApiUrl = "https://perimeterx.prod.kageapis.com/web/cookie/init"
+	ApiInitUrl    = "https://perimeterx.prod.kageapis.com/web/cookie/init"
+	ApiHoldcapUrl = "https://perimeterx.prod.kageapis.com/web/cookie/init"
 )
 
 const (
@@ -11,5 +12,3 @@ const (
 	VividSeats = PxSite("vividseats")
 	StockX     = PxSite("stockx")
 )
-
-type PxSite string

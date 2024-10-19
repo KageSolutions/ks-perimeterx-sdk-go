@@ -1,6 +1,12 @@
 package ksperimeterxsdkgo
 
-type PxRequest struct {
+type PxSdkInstance struct {
+	request pxRequest
+}
+
+type PxSite string
+
+type pxRequest struct {
 	ApiKey  string `json:"apiKey"`
 	Ua      string `json:"ua"`
 	PageURL string `json:"pageUrl"`
@@ -20,5 +26,6 @@ type PxResponse struct {
 		SecUa     string `json:"secUa"`
 		Platform  string `json:"platform"`
 		UserAgent string `json:"userAgent"`
+		Data      string `json:"data"`
 	} `json:"headers"`
 }
